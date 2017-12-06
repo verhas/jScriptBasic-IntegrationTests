@@ -1,0 +1,4 @@
+module scriptBasicIntegrationTest {
+    requires scriptbasic;
+
+}
