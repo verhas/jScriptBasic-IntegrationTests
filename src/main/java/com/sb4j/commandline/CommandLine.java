@@ -41,6 +41,7 @@ public class CommandLine {
             final Throwable cause = Optional.ofNullable(exception.getCause()).orElse(exception);
             if (cause.getMessage() != null) {
                 System.err.println("ERROR: " + cause.getMessage());
+                exception.printStackTrace(error);
             } else {
                 throw exception;
             }
@@ -50,8 +51,8 @@ public class CommandLine {
         }
     }
 
-    public static void myPrint(String s) throws ScriptBasicException {
-        output.println(s);
+    public static void myPrint(Interpreter interpreter, String s) throws ScriptBasicException {
+        ((PrintWriter)interpreter.getOutput()).println(interpreter.getVariable(s));
     }
 
     private static void registerSystemPropertyDefinedClasses(final ScriptBasic ctx) throws ClassNotFoundException, ScriptBasicException {

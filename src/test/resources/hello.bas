@@ -12,4 +12,10 @@ endsub
 
 TEXT = "ooo... my PRINT"
 
-myPrint "TEXT"
+call myMyPrint
+
+sub myMyPrint
+  local TEXT
+  TEXT="local"
+  myPrint "TEXT"
+endsub

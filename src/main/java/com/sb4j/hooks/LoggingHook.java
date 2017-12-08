@@ -7,6 +7,7 @@ import com.scriptbasic.spi.SimpleHook;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.lang.System.Logger.Level.INFO;
@@ -39,7 +40,9 @@ public class LoggingHook extends SimpleHook {
                                               final Class<?> klass, final String methodName,
                                               final Class<?>[] argumentTypes) {
         LOG.log(INFO, "Hook before registering " + alias + " for " + klass.getName() + "." + methodName + "(" +
-                Arrays.stream(argumentTypes).map(Class::getName).collect(Collectors.joining(",")) + ")");
+                Arrays.stream(
+                    Optional.ofNullable(argumentTypes).orElse(new Class[0])
+                ).map(Class::getName).collect(Collectors.joining(",")) + ")");
     }
 
     @Override
@@ -71,7 +74,9 @@ public class LoggingHook extends SimpleHook {
     public void beforeSubroutineCallEx(final String subroutineName,
                                        final LeftValueList arguments, final RightValue[] argumentValues) {
         LOG.log(INFO, "Hook before calling " + subroutineName + "(" +
-                Arrays.stream(argumentValues).map(Object::toString).collect(Collectors.joining(",")) + ")");
+                Arrays.stream(
+                    Optional.ofNullable(argumentValues).orElse(new RightValue[0])
+                ).map(Object::toString).collect(Collectors.joining(",")) + ")");
     }
 
     @Override
