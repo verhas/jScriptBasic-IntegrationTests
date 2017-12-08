@@ -10,12 +10,16 @@ print i," ",X[i],"\n"
 next i
 endsub
 
-TEXT = "ooo... my PRINT"
+TEXT = "global variable"
 
 call myMyPrint
 
 sub myMyPrint
   local TEXT
-  TEXT="local"
+  TEXT= "local variable"
   myPrint "TEXT"
+endsub
+
+sub pleaseCallMe
+  PRINT "thanks for calling"
 endsub
