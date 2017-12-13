@@ -40,7 +40,7 @@ public class CommandLine {
       sb.load(new FileReader(basicProgramFileName));
       Subroutine sub = sb.getSubroutine("pleaseCallMe");
       sub.call();
-      //sb.execute();
+      sb.execute();
     } catch (final Exception exception) {
       final Throwable cause = Optional.ofNullable(exception.getCause()).orElse(exception);
       if (cause.getMessage() != null) {

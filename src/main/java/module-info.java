@@ -1,4 +1,3 @@
 module scriptBasicIntegrationTest {
     requires scriptbasic;
-
 }
